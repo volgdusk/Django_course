@@ -1,0 +1,16 @@
+version: "3"
+
+services: 
+    app:
+        build: 
+            # Idicates that te context is the current directory
+            context: .
+        # Realport:dockerport
+        ports: 
+            - "8000:8000"
+        #automaticly import the changes from app to the docker app location
+        volumes: 
+            - ./app:/app
+        # the command to run, sh = shell, -c = run command, 0.0.0.0 = aviable for all ip adresses fron docker
+        command: >
+            sh -c "python manage.py runserver 0.0.0.0:8000"
